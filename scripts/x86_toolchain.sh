@@ -3,7 +3,9 @@
 # Created by Lubos Kuzma
 # ISS Program, SADT, SAIT
 # August 2022
+#edit by Saiban: The toolchain will work in 64bit. Can be adjusted back to 64 or 32 bit with changes to while loop.
 
+echo -e "\n***Toolchain will operate only in 64-bit mode***\n"
 
 if [ $# -lt 1 ]; then
         echo "Usage:"
@@ -30,6 +32,7 @@ QEMU=False
 BREAK="_start"
 RUN=False
 while [[ $# -gt 0 ]]; do
+                        BITS=True;
         case $1 in
                 -g|--gdb)
                         GDB=True
@@ -42,10 +45,6 @@ while [[ $# -gt 0 ]]; do
                         ;;
                 -v|--verbose)
                         VERBOSE=True
-                        shift # past argument
-                        ;;
-                -64|--x84-64)
-                        BITS=True
                         shift # past argument
                         ;;
                 -q|--qemu)
